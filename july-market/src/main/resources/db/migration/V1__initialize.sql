@@ -1,5 +1,7 @@
+-- noinspection SqlDialectInspectionForFile
+
 drop table if exists products cascade;
-create table products (id bigserial, title varchar(255), description varchar(5000), price int, primary key(id));
+create table products (id bigserial, category varchar (255), title varchar(255), description varchar(5000), price int, primary key(id));
 insert into products
 (title, description, price) values
 ('Cheese', 'Fresh cheese', 320),

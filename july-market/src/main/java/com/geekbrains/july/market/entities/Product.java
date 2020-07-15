@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -15,14 +16,29 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "title")
     private String title;
 
     @Column(name = "price")
     private int price;
 
-    public Product(Long id, String title, int price) {
+    @ManyToMany
+    @JoinTable(
+            name = "products_categories",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
+
+    @Column(name = "description")
+    private String description;
+
+    public Product(Long id, String category, String title, int price) {
         this.id = id;
+        this.category = category;
         this.title = title;
         this.price = price;
     }

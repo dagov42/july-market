@@ -15,4 +15,8 @@ public class ProductSpecifications {
     public static Specification<Product> findByTitle(String title) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), "%" + title.toLowerCase() + "%");
     }
+    public static Specification<Product> findByCategory(String category) {
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {criteriaQuery.distinct(true);
+        return criteriaBuilder.equal(root.join("categories").get("title"), category);};
+    }
 }

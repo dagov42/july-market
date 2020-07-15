@@ -1,0 +1,56 @@
+drop table if exists categories cascade;
+create table categories (id bigserial, title varchar(255), description varchar(5000), primary key(id));
+insert into categories
+(title, description) values
+('food', 'some food products'),
+('fruits', 'some fruit'),
+('vegetables', 'some vegetables'),
+('electronics', 'some electronics'),
+('non-food', 'all non-food products');
+
+drop table if exists products_categories cascade;
+create table products_categories (product_id bigint, category_id bigint, foreign key (product_id) references products (id), foreign key (category_id) references categories (id));
+insert into products_categories (product_id, category_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(3, 2),
+(4, 1),
+(5, 1),
+(5, 3),
+(6, 5),
+(7, 5),
+(8, 5),
+(9, 5),
+(10, 5),
+(11, 5),
+(12, 5),
+(13, 5),
+(14, 5),
+(15, 5),
+(16, 5),
+(17, 5),
+(20, 5),
+(21, 5),
+(22, 5),
+(23, 5),
+(24, 5),
+(25, 5),
+(6, 4),
+(7, 4),
+(8, 4),
+(9, 4),
+(10, 4),
+(11, 4),
+(12, 4),
+(13, 4),
+(14, 4),
+(15, 4),
+(16, 4),
+(17, 4),
+(20, 4),
+(21, 4),
+(22, 4),
+(23, 4),
+(24, 4),
+(25, 4);

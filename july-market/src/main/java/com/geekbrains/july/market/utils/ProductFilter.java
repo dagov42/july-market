@@ -26,7 +26,14 @@ public class ProductFilter {
             filterDefinition.append("&max_price=").append(maxPrice);
         }
         if (map.containsKey("title") && !map.get("title").isEmpty()){
-            spec = spec.and(ProductSpecifications.findByTitle("title"));
+            String title = map.get("title");
+            spec = spec.and(ProductSpecifications.findByTitle(title));
+            filterDefinition.append("&title=").append(title);
+
+        }if (map.containsKey("category") && !map.get("category").isEmpty()){
+            String category = map.get("category");
+            spec = spec.and(ProductSpecifications.findByCategory(category));
+            filterDefinition.append("&category=").append(category);
         }
     }
 }
